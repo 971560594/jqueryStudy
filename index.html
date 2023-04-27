@@ -1,0 +1,723 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			body {
+				height: auto;
+			}
+			/* 轮播图开始 */
+			#baiyechuang {
+				width: 560px;
+				height: 300px;
+				margin: 100px auto;
+				position: relative;
+			}
+			#baiyechuang .anniu .leftbut {
+				/*左按钮*/
+				position: absolute;
+				width: 45px;
+				height: 45px;
+				top: 122px;
+				left: 10px;
+				background: url(images/icons.png) no-repeat 0 0;
+				cursor: pointer;
+			}
+			#baiyechuang .anniu .rightbut {
+				/*右按钮*/
+				position: absolute;
+				width: 45px;
+				height: 45px;
+				top: 122px;
+				right: 10px;
+				background: url(images/icons.png) no-repeat 0 -45px;
+				cursor: pointer;
+			}
+			#baiyechuang .dianul {
+				list-style: none;
+				position: absolute;
+				right: 27px;
+				bottom: 12px;
+			}
+			#baiyechuang .dianul li {
+				float: left;
+				width: 15px;
+				height: 15px;
+				margin-right: 8px;
+				background: url(images/icons.png) no-repeat -23px -125px;
+				cursor: pointer;
+			}
+			#baiyechuang .dianul li.cur {
+				background-position: -8px -125px;
+			}
+			#baiyechuang .maonimen {
+				-webkit-perspective: 600px;
+			}
+
+			#baiyechuang .maonimen p {
+				width: 140px;
+				height: 100px;
+				font-size: 40px;
+				text-align: center;
+				line-height: 100px;
+				position: absolute;
+				background-image: url(images/0.jpg);
+			}
+
+			#baiyechuang .maonimen.fei p {
+				opacity: 0;
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(1) {
+				-webkit-transform: rotateX(30deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(2) {
+				-webkit-transform: rotateX(330deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(3) {
+				-webkit-transform: rotateX(3450deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(4) {
+				-webkit-transform: rotateX(-30deg) rotateY(-10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(5) {
+				-webkit-transform: rotateX(330deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(6) {
+				-webkit-transform: rotateX(40deg) rotateY(20deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(7) {
+				-webkit-transform: rotateX(340deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(8) {
+				-webkit-transform: rotateX(3450deg) rotateY(60deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(9) {
+				-webkit-transform: rotateX(230deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(10) {
+				-webkit-transform: rotateX(20deg) rotateY(20deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(11) {
+				-webkit-transform: rotateX(30deg) rotateY(10deg) translateZ(400px);
+			}
+
+			#baiyechuang .maonimen.fei p:nth-child(12) {
+				-webkit-transform: rotateX(10deg) rotateY(10deg) translateZ(400px);
+			}
+			/* 画板开始 */
+			#canvasBox{
+				width: 510px;
+				margin: 0 auto;
+			}
+			#canvas {
+				border: 1px solid #333;
+				border-radius: 5px;
+				margin: 100px auto 20px;
+			}
+			#btnBox {
+				width: 500px;
+				margin:0 auto;
+				display: flex;
+				text-align: center;
+				justify-content: space-between;
+			}
+
+			#btnBox li input {
+				background-color: #e5c10f;
+				padding: 5px 10px;
+				border: 1px solid #E5C10F;
+				border-radius: 5px;
+				color: #fff;
+			}
+			/* 数字时钟开始 */
+			.clockBox {
+				height: 700px;
+				text-align: center;
+				margin: 100px 0;
+				overflow: hidden;
+				background-color: #333333;
+			}
+
+			.clockBox .colum,
+			.clockBox .coln {
+				display: inline-block;
+				font-size: 86px;
+				line-height: 86px;
+				vertical-align: top;
+				color: #f5f5f5;
+			}
+
+			.clockBox .colum {
+				transition: all 300ms ease-in-out;
+			}
+
+			.clockBox .coln {
+				transform: translateY(430px);
+			}
+
+			.cavansCode,
+			.canvaBox {
+				width: 300px;
+				height: 55px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			#verification {
+				border-radius: 5px;
+				display: inline-block;
+				border: 1px solid #424242;
+			}
+
+			#renovate,
+			#sbumint {
+				color: #fff;
+				width: 48px;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 5px;
+				position: relative;
+				top: -20px;
+				border: 1px solid #E5C10F;
+				background-color: #E5C10F;
+				cursor: pointer;
+			}
+
+			#valCode {
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				outline: none;
+				padding-left: 5px;
+				margin: 10px 0;
+			}
+
+			#sbumint {
+				top: 0;
+			}
+
+			.puzzleBody {
+				width: 600px;
+				height: 400px;
+				margin: 150px auto;
+				border: 1px solid #333;
+			}
+
+			.startBtn {
+				display: block;
+				width: 60px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				font-size: 15px;
+				background-color: #FFFFFF;
+				border: 1px solid #424242;
+				cursor: pointer;
+				margin: 10px auto;
+			}
+
+			.imgArrBox {
+				width: 560px;
+				height: 300px;
+				border: 1px solid #333;
+				margin: 10px auto;
+				position: relative;
+			}
+
+			.imgArrBox .imgItem {
+				box-shadow: 0 0 9px #fff;
+				background: url(images/1.jpg) no-repeat;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 轮播 -->
+		<div id="baiyechuang">
+			<div class="tutu">
+				<div class="maonimen">
+					<p>1</p>
+					<p>2</p>
+					<p>3</p>
+					<p>4</p>
+					<p>5</p>
+					<p>6</p>
+					<p>7</p>
+					<p>8</p>
+					<p>9</p>
+					<p>10</p>
+					<p>11</p>
+					<p>12</p>
+				</div>
+				<!-- 轮播图主体 -->
+				<div class="zhentu">
+					<img src="images/1.jpg" />
+				</div>
+			</div>
+			<!-- 左右按钮 -->
+			<div class="anniu">
+				<span class="leftbut"></span>
+				<span class="rightbut"></span>
+			</div>
+			<!-- 轮播图小圆点 -->
+			<ul class="dianul">
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<!-- 画板 -->
+		<div id="canvasBox">
+			<canvas id="canvas" width="500" height="300"></canvas>
+			<ul id="btnBox">
+				<li><input type="color" value="#333333" id="cavaLineColor"></li>
+				<li><input type="button" value="清屏" id="clearCava"></li>
+				<li><input type="button" value="橡皮" id="rubberCava"></li>
+				<li><input type="button" value="撤消" id="recallCava"></li>
+				<li><input type="button" value="恢复" id="resumeCava"></li>
+				<li><input type="range" value="1" id="cavaLineWidth" max="30" min="1"></li>
+			</ul>
+		</div>
+		<!-- 数字时钟 -->
+		<div class="clockBox">
+			<div class="colum">
+				<div class="num">0</div>
+				<div class="num">1</div>
+				<div class="num">2</div>
+			</div>
+			<div class="colum ten"></div>
+			<div class="coln">:</div>
+			<div class="colum six"></div>
+			<div class="colum ten"></div>
+			<div class="coln">:</div>
+			<div class="colum six"></div>
+			<div class="colum ten"></div>
+		</div>
+		<!-- 验证码 -->
+		<div class="cavansCode">
+			<input type="text" id="valCode" placeholder="请输入验证码" />
+			<button type="button" id="sbumint">提交</button>
+			<div class="canvaBox">
+				<canvas id="verification" width="200" height="50"></canvas>
+				<button type="button" id="renovate">刷新</button>
+			</div>
+		</div>
+		<!-- 拼图 -->
+		<div class="puzzleBody">
+			<button type="button" class="startBtn">开始</button>
+			<div class="imgArrBox">
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		//parseInt(Math.random() * 100 + 200)
+		$(document).ready(function() {
+			// 轮播图
+			function bannerInitFun() {
+				var nowimg = 0;
+				$(".maonimen p").each(function() {
+					var a = $(this).index() % 4 * 140;
+					var b = parseInt($(this).index() / 4) * 100;
+					$(this).css({
+						"left": a,
+						"top": b,
+						"background-position": (-a) + "px " + (-b) + "px"
+					})
+				});
+				$(".rightbut").click(function() {
+					if (nowimg < 4) {
+						nowimg++;
+					} else {
+						nowimg = 0;
+					}
+					dong();
+				});
+				$(".leftbut").click(
+					function() {
+						if (nowimg > 0) {
+							nowimg--;
+						} else {
+							nowimg = 4;
+						}
+						dong();
+					}
+				);
+				function dong() {
+					//加过渡：
+					$(".maonimen p").css("transition", "all 1s ease 0s");
+					$(".maonimen").addClass("fei");
+					$(".zhentu img").attr("src", "images/" + nowimg + ".jpg");
+					setTimeout(function() {
+						//去掉过渡
+						$(".maonimen p").css("transition", "none");
+						$(".maonimen p").css("background-image", "url(images/" + nowimg + ".jpg)");
+						//我们准备下一张图
+						$(".maonimen").removeClass("fei");
+					}, 1000);
+				}
+			}
+			bannerInitFun();
+			// 画布
+			function canvasInitFun() {
+				let bool = false;
+				let canvasContext = $('#canvas').get(0).getContext('2d');
+				let onRubberCava = false;
+				let cavaImgArr = [];
+				let cavaresumeImgArr = [];
+				$('#canvas').on("mousedown", function(e) {
+					var e = e || window.event;
+					var coordinate = {
+						my_x: $('#canvas').offset().left,
+						my_y: $('#canvas').offset().top,
+						pageX: e.pageX,
+						pageY: e.pageY,
+						offsetX: e.offsetX,
+						offsetY: e.offsetY
+					}
+					bool = true;
+					canvasContext.beginPath(); //开始绘制
+					canvasContext.moveTo(coordinate.offsetX, coordinate.offsetY); //绘制起点
+					if (!onRubberCava) {
+						canvasContext.strokeStyle = $('#cavaLineColor').val(); //描边颜色
+						canvasContext.lineWidth = $('#cavaLineWidth').val(); //描边线宽
+					}
+					canvasContext.lineCap = 'round'; //起始点样式
+					canvasContext.lineJoin = 'round'; //拐弯点样式
+					let cavaImg = canvasContext.getImageData(0, 0, $('#canvas')[0].width, $('#canvas')[0]
+						.height); //将画布内容转换为图片
+					cavaImgArr.push(cavaImg)
+					$('#canvas').mousemove(function(et) {
+						var et = et || window.event;
+						if (bool) {
+							canvasContext.lineTo(et.offsetX, et.offsetY); //途径点
+							canvasContext.stroke(); //已描边形式绘制
+						}
+					})
+					$('body').mouseup(function(et) {
+						bool = false;
+						if (onRubberCava) {
+							onRubberCava = false;
+							$('#rubberCava').css("backgroundColor", '#e5c10f')
+						}
+						canvasContext.closePath();
+					});
+					$('#canvas').mouseup(function(et) {
+						let imgData = canvasContext.getImageData(0, 0, $('#canvas')[0].width, $(
+							'#canvas')[0].height); //将画布内容转换为图片
+						cavaresumeImgArr = [];
+						cavaresumeImgArr.push(imgData);
+					})
+				})
+				// 清屏 橡皮 撤回
+				$("#btnBox").on("click", function(e) {
+					let et = e || window.event;
+					let clickId = et.target.id;
+					switch (clickId) {
+						case 'clearCava':
+							canvasContext.clearRect(0, 0, $('#canvas')[0].width, $('#canvas')[0].height)
+							break;
+						case 'rubberCava':
+							onRubberCava = true;
+							canvasContext.strokeStyle = '#FFFFFF'; //描边颜色
+							canvasContext.lineWidth = '30'; //描边线宽
+							$('#rubberCava').css("backgroundColor", 'red')
+							break;
+						case "recallCava":
+							if (cavaImgArr.length > 0) {
+								let imgData = cavaImgArr.pop();
+								canvasContext.putImageData(imgData, 0, 0); //将图片内容绘制在画布中
+								cavaresumeImgArr.push(imgData);
+							}
+							break;
+						case "resumeCava":
+							let len = cavaresumeImgArr.length;
+							if (len > 1) {
+								let resumeImgData = cavaresumeImgArr[len - 2];
+								canvasContext.putImageData(resumeImgData, 0, 0); //将图片内容绘制在画布中
+								cavaImgArr.push(cavaresumeImgArr.pop())
+							} else if (len == 1) {
+								canvasContext.putImageData(cavaresumeImgArr[len - 1], 0, 0); //将图片内容绘制在画布中
+							}
+							break;
+					}
+				})
+			}
+			canvasInitFun();
+			// 数字时钟
+			function digitalClock() {
+				(function setClock() {
+					for (var i = 0; i < 10; i++) {
+						var div = '<div class="num">' + i + '</div>';
+						$(".ten").append(div);
+					}
+					for (var i = 0; i < 6; i++) {
+						var div = '<div class="num">' + i + '</div>';
+						$(".six").append(div);
+					}
+				})();
+
+				function getCurrentTime() {
+					var date = new Date(),
+						dateList = [date.getHours(), date.getMinutes(), date.getSeconds()],
+						dateStr = dateList.reduce((sum, item) => {
+							return sum + ("0" + item).slice(-2)
+						}, '')
+					return dateStr
+				};
+				// 时间滚动
+				(function timeScrolling() {
+					var columList = Array.from($(".colum"));
+					setInterval(() => {
+						var dateStr = getCurrentTime();
+						columList.forEach((item, index) => {
+							var num = +dateStr[index];
+							var timeNumList = Array.from(item.children);
+							$(item).css({
+								"transform": "translateY(" + (430 - 86 * num) + "px)",
+							})
+							timeNumList.forEach((elem, idx) => {
+								var diffTime = (num - idx) >= 0 ? (num - idx) : (num -
+									idx) * (-1);
+								$(elem).css({
+									"opacity": 1 - (diffTime * 0.1),
+								})
+							})
+						})
+					}, 1000)
+				})()
+			}
+			digitalClock();
+			// cavans验证码
+			function cavansVerificationCode() {
+				// 存26个字母及数字
+				let codeList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+				for (var i = 65; i < 122; i++) {
+					if (i < 97 && i > 90) {
+						continue;
+					}
+					codeList.push(String.fromCharCode(i)); //将数字转换成字母
+				}
+				var testVerify = ''
+				function createCanvas() {
+					var myCavanDom = document.getElementById("verification");
+					var cavanCode = myCavanDom.getContext("2d");
+					var cavansCode = '';
+					testVerify = '';
+					for (var i = 0; i < 6; i++) {
+						var code = codeList[parseInt(Math.random() * codeList.length)];
+						cavansCode += code + " "
+						testVerify += code
+					}
+					var img = new Image();
+					img.src = 'images/codebg.jpg'
+					img.onload = function() {
+						var bgTxt = cavanCode.createPattern(img, 'repeat');
+						cavanCode.fillStyle = bgTxt;
+						cavanCode.fillRect(0, 0, myCavanDom.width, myCavanDom.height);
+						cavanCode.fillStyle = "#fff";
+						cavanCode.font = '25px Roboto Slab';
+						cavanCode.textAlign = "center"
+						cavanCode.setTransform(1, -0.1, 0.1, 1, 0, 15);
+						cavanCode.fillText(cavansCode, myCavanDom.width / 2, 25);
+					}
+				}
+				createCanvas()
+				$("#renovate").click(function() {
+					createCanvas();
+				})
+				$('#sbumint').click(function() {
+					var val = testVerify.toLocaleUpperCase();
+					var value = ($("#valCode").val()).toLocaleUpperCase();
+					if (!(val == value)) {
+						alert("验证码输入错误请重新输入");
+						$("#valCode").val('');
+						createCanvas();
+					}
+				})
+
+			}
+			cavansVerificationCode();
+			// 拼图
+			function puzzleImg() {
+				var puzzleBodyW = $('.imgArrBox').width();
+				var puzzleBodyH = $('.imgArrBox').height();
+				var imgItemW = puzzleBodyW / 4;
+				var imgItemH = puzzleBodyH / 3;
+				var orderArr = [];
+				var disorderArr = [];
+				var startFlag = false;
+				var imageUrl = 1;
+				var gameLevel = 0;
+				function initPuzzleImg(row,col){
+					$('.imgArrBox').html('');
+					orderArr = [];
+					imgItemW = puzzleBodyW / row;
+					imgItemH = puzzleBodyH / col; 
+					for (let i = 0; i < row; i++) {
+						for (let j = 0; j < col; j++) {
+							orderArr.push([i,j])
+							var imgItem = $('<div class="imgItem"></div>');
+							$('.imgArrBox').append(imgItem);
+							imgItem.css({
+								width: imgItemW + 'px',
+								height: imgItemH + 'px',
+								backgroundPosition: -(imgItemW) * i + 'px ' + (-imgItemH) * j + 'px',
+								left: (imgItemW) * i + 'px',
+								top: (imgItemH) * j + 'px'
+							})
+						}
+					}
+				}
+				initPuzzleImg(4,3);
+				// 点击开始按钮
+				$(".startBtn").on("click",function(){
+					disorderArr = [];
+					var len = orderArr.length;
+					var orderindexArr = []
+					var imgItems = $('.imgItem');
+					if(!startFlag){
+						startFlag = true
+						$(this).text('复原');
+						for(var i=0;i<len;i++){
+							var orderindex = Math.floor(Math.random()*len)
+							if(disorderArr.length>0){
+								while(orderindexArr.indexOf(orderindex)>-1){
+									orderindex = Math.floor(Math.random()*len)
+								}
+							}
+							orderindexArr.push(orderindex)
+							disorderArr.push(orderArr[orderindex]);
+						}
+						startRestFun(disorderArr,imgItems);
+						dragFun(disorderArr,imgItems)
+					}else{
+						startFlag = false
+						$(this).text('开始');
+						startRestFun(orderArr,imgItems);
+						imgItems.off('mousedown');
+					}
+				})
+				// 点击按钮打乱顺序或复原
+				function startRestFun(arr,imgItems){
+					for (let i = 0; i < arr.length; i++) {
+						let element = arr[i];
+						imgItems.eq(i).animate({
+							left: (imgItemW) *  element[0] + 'px',
+							top: (imgItemH) *  element[1] + 'px'
+						},400)
+					}
+				}
+				//开始拖拽
+				function dragFun(arr,imgItems){
+					imgItems.on('mousedown',function(e1){
+						var index1 = $(this).index();
+						var thisLeft = e1.pageX-$(this).offset().left;
+						var thisTop = e1.pageY-$(this).offset().top;
+						$(".imgArrBox").on('mousemove',function(e2){
+							var left = e2.pageX - $(this).offset().left - thisLeft;
+							var top = e2.pageY - $(this).offset().top - thisTop;
+							imgItems.eq(index1).css({
+								left:left,
+								top:top,
+								zIndex:'9'
+							})
+						}).on('mouseup',function(e3){
+							var leftUp = e3.pageX - $(this).offset().left - thisLeft;
+							var topUp = e3.pageY - $(this).offset().top - thisTop;
+							var index2 = changePosition(leftUp,topUp,arr,index1);
+							startChange(index1,index2,arr,imgItems);
+							$(".imgArrBox").off('mousemove').off('mouseup');
+						})
+					})
+				}
+				// 获取要交换的位置
+				function changePosition(leftUp,topUp,arr,index){
+					var i = Number((leftUp/imgItemW).toFixed(0))
+					var j = Number((topUp/imgItemH).toFixed(0))
+					if(leftUp<(-imgItemW/2)||topUp<(-imgItemH/2)||
+					leftUp>(puzzleBodyW-imgItemW/2)||
+					topUp>(puzzleBodyH-imgItemH/2)){
+						return index;
+					}
+					let index2 = null
+					for (var k = 0; k < arr.length; k++) {
+						var indexItem = arr[k];
+						if(indexItem[0]==i&&indexItem[1]==j){
+							index2 = k;
+							break;
+						}
+					}
+					return index2
+				}
+				// 开始交换位置
+				function startChange(index1,index2,arr,imgItems){
+					if(index1==index2){
+						imgItems.eq(index1).animate({
+							left: (imgItemW) *  arr[index1][0] + 'px',
+							top: (imgItemH) *  arr[index1][1] + 'px',
+							zIndex:'1'
+						})
+					}else{
+						var temp = arr[index1]
+						arr[index1] = arr[index2]
+						arr[index2] = temp
+						imgItems.eq(index2).animate({
+							left: (imgItemW) *  arr[index2][0] + 'px',
+							top: (imgItemH) *  arr[index2][1] + 'px',
+							zIndex:'1'
+						})
+						imgItems.eq(index1).animate({
+							left: (imgItemW) *  arr[index1][0] + 'px',
+							top: (imgItemH) *  arr[index1][1] + 'px',
+							zIndex:'1'
+						})
+						setTimeout(function(){
+							if(arr.toString()==orderArr.toString()){
+								startFlag = false
+								alert('拼图成功，游戏结束')
+								imageUrl++;
+								if(imageUrl==6){
+									 imageUrl==1
+									 gameLevel++
+								}
+								initPuzzleImg(4+gameLevel,3+gameLevel);
+								$(".imgArrBox .imgItem").css('backgroundImage','url(images/'+imageUrl+'.jpg)');
+								$('.startBtn').text('开始');
+								imgItems.off('mousedown');
+							}
+						},500)
+					}
+				}
+			}
+			puzzleImg()
+		});
+	</script>
+</html>
